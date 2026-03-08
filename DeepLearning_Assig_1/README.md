@@ -30,3 +30,5 @@
    ```bash
    git clone https://github.com/ElmoGaber/DeepLearning_Project.git
    cd DeepLearning_Project
+   cd DeepLearning_Assig_1
+   ```
