@@ -66,17 +66,6 @@ The **cell state** `C_t` uses **additive updates** instead of repeated multiplic
 - **Short memory** → Hidden state `H_t` (output at each time step)
 
 
-Gate	Wx	Wh	b
-Forget	0.5	0.1	0
-Input	0.6	0.2	0
-Candidate	0.7	0.3	0
-Output	0.8	0.4	0
 
-
-t	f	i	C̃	C	o	h
-1	0.622	0.646	0.604	0.390	0.690	0.257
-2	0.736	0.778	0.901	0.988	0.846	0.640
-3	0.827	0.873	0.980	1.672	0.934	0.871
-4	0.889	0.929	0.996	2.390	0.965	0.949
 
 
