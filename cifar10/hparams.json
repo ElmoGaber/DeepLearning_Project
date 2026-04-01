@@ -1,0 +1,14 @@
+{
+  "img_size": 96,
+  "num_classes": 10,
+  "batch_size": 128,
+  "warmup_epochs": 12,
+  "finetune_epochs": 12,
+  "warmup_lr": 0.0003,
+  "finetune_lr": 5e-06,
+  "weight_decay": 0.0001,
+  "unfreeze_from": -20,
+  "label_smoothing": 0.1,
+  "clip_norm": 1.0,
+  "out_dir": "runs/cifar10"
+}
