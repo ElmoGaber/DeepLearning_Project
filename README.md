@@ -1,32 +1,71 @@
-# Deep Learning Project: CIFAR-10 Classification with ResNet50V2
-
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?logo=tensorflow)
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![CIFAR-10](https://img.shields.io/badge/Dataset-CIFAR--10-green)
-
-**Advanced deep learning classification project** that applies transfer learning using **ResNet50V2** on the **CIFAR-10** dataset. The project implements a custom training loop with `tf.GradientTape`, a structured two-phase training strategy (feature extraction → fine-tuning), comprehensive evaluation, and comparison of different training regimes.
+# RNN & LSTM — From Scratch (Python)
+**Based on Lecture 3 by A. Prof. Noha El-Attar**
 
 ---
 
-## ✨ Key Features
+## How to Run
 
-- Transfer learning with pre-trained ResNet50V2 (ImageNet weights)  
-- Custom training loop using `tf.GradientTape` for full control  
-- Two-phase training strategy:  
-  - Phase 1: Freeze base model → train only top classifier  
-  - Phase 2: Unfreeze selected layers → fine-tune with low learning rate  
-- Comprehensive evaluation: accuracy, precision, recall, F1-score, confusion matrix  
-- Learning curves, loss/accuracy plots per phase  
-- Model checkpointing and best model saving  
-- Dark cyber-themed presentation slides included  
-- Reproducible Jupyter notebook workflow  
+```bash
+pip install numpy
+python lstm_from_scratch.py
+```
 
 ---
 
-## 🚀 Quick Start
+## What the Script Does
 
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/ElmoGaber/DeepLearning_Project.git
-   cd DeepLearning_Project
+### Part 1 — Vanilla RNN
+Replicates the **"dogs"** example from the lecture slides.
+
+- Input sequence: `d → o → g`
+- Target prediction: `s`
+- Vocabulary size `k = 4`, Hidden nodes `d = 3`
+- Uses the exact weight matrices from the slides
+
+**Equations:**
+```
+a_t = W_H · h_{t-1}  +  W_X · X_t
+h_t = tanh(a_t)
+y_t = softmax(W_Y · h_t)
+E   = (ŷ - y)²
+```
+
+---
+
+### Part 2 — LSTM Forward Pass
+Full implementation of an LSTM cell with **4 gates** across 3 time steps.
+
+**Gate Equations:**
+
+| Gate | Equation | Role |
+|------|----------|------|
+| Forget gate | `F_t = σ(X_t·W_xf + H_{t-1}·W_hf + b_f)` | What to erase from long memory |
+| Input gate | `I_t = σ(X_t·W_xi + H_{t-1}·W_hi + b_i)` | What new info to write |
+| Candidate | `C̃_t = tanh(X_t·W_xc + H_{t-1}·W_hc + b_c)` | New candidate values |
+| Cell state | `C_t = F_t ⊙ C_{t-1} + I_t ⊙ C̃_t` | Updated long memory |
+| Output gate | `O_t = σ(X_t·W_xo + H_{t-1}·W_ho + b_o)` | What to output |
+| Hidden state | `H_t = O_t ⊙ tanh(C_t)` | Short memory / output |
+
+---
+
+## Key Concepts
+
+### RNN vs LSTM
+
+| | RNN | LSTM |
+|---|---|---|
+| Architecture | Single tanh layer | 4 interactive layers |
+| Memory | Short-term only | Long + short term |
+| Gradient problem | Vanishing gradients | Solved via cell state |
+
+### Why LSTM Solves Vanishing Gradients
+The **cell state** `C_t` uses **additive updates** instead of repeated multiplications, allowing gradients to flow back through long sequences without shrinking to zero.
+
+### LSTM Memory Types
+- **Long memory** → Cell state `C_t` (runs across all time steps like a conveyor belt)
+- **Short memory** → Hidden state `H_t` (output at each time step)
+
+
+
+
+
