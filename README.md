@@ -319,13 +319,3 @@ Contributions are welcome! Areas for improvement:
 Please open an issue or submit a pull request.
 
 ---
-
-## Author
-
-**Your Name** - [your.email@example.com](mailto:your.email@example.com)
-
-Project Link: [https://github.com/yourusername/transformer-self-attention](https://github.com/yourusername/transformer-self-attention)
-
----
-
-> **Note**: This is an educational implementation. For production use, please use optimized libraries like [PyTorch](https://pytorch.org/) or [TensorFlow](https://tensorflow.org/) which provide highly optimized attention kernels and automatic differentiation.
